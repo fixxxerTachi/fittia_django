@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block css %}catalogue{% endblock %}
+{% block content %}
+<div>
+	<form method='get'>
+	<table>
+	{{form}}
+	</table>
+	<input type='submit' value='検索'>
+	</form>
+	{{query}}
+</div>
+<div class='pagination'>
+	<span class='step-links'>
+		{% if products.has_previous %}
+			<a href='?page={{products.previous_page_number}}'>previouts</a>
+		{% endif %}
+		<span>
+			{% for p in products.paginator.page_range %}
+				{% if products.number == p %}
+					{{ p }}
+				{% else %}
+					<a href='?page={{p}}{% if query %}&{{query}}{% endif %}'>{{p}}</a>
+				{% endif %}
+			{% endfor %}
+		</span>
+		{% if products.has_next %}
+			<a href='?page={{products.next_page_number}}'>next</a>
+		{% endif %}
+	</span>
+</div>
+<h2>商品一覧</h2>
+<div id='products_list'>
+	{% for p in products %}
+	<div class='products'>
+		<ul>
+			<li><a href='/products/view/{{ p.id }}/'><img src='{{ STATIC_URL }}images/brands/{{ p.brand.code }}/{{ p.img }}' 
+				width='150' height='100'></a></li>
+			<li>{{ p.brand.name }}</li>
+			<li>{{ p.price }}</li>
+			<li>{{ p.brand.sex }}</li>
+			<li>{{ p.brand.target }}</li>
+			<li>{{ p.id }}/{{ p.created }}</li>
+		</ul>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

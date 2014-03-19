@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if products %}
+<h2>カートには{{products.count}}点の商品が入っています</h2>
+{% else %}
+<h2>カートには何も入っていません</h2>
+{% endif %}
+<ul>
+{% for k,p in products.items %}
+	<li><img src='{{STATIC_URL}}images/brands/{{p.brand.code}}/{{p.img}}' width='150' height='100'></a></li>
+	<li>{{p.brand.code}}-{{p.color.code}}-{{p.id}}</li>
+	<li><a href='/del_item/{{forloop.counter0}}/'>カートから削除する</a></li>
+	{% if not p.checked %}
+		<li><a href='/select_lens/{{forloop.counter0}}/select/payment/'>レンズを選択する</a></li>
+	{% else %}
+		<li>
+		{% if p.cart.lens_data.select_lens ==  'leveled' %}
+			度つき:{{p.cart.lens_data.leveled_lens}}
+		{% else %}
+			度なし:{{p.cart.lens_data.no_lens}}	
+		{% endif %}
+		<a href='/select_lens/{{forloop.counter0}}/checked/payment'>レンズを変更する</a></li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% if lens_data_input and lens_level == None %}
+	<div>
+		<a href='/lens_data_input/payment/'>レンズデータを登録する</a>
+	</div>
+{% elif lens_data_input %}
+	<div>
+		<ul>
+			<li>level_l:{{lens_level.level_l}}</li>
+			<li>level_r:{{lens_level.level_r}}</li>
+			<li>astig_l:{{lens_level.astig_l}}</li>
+			<li>astig_r:{{lens_level.astig_r}}</li>
+		</ul>
+		<a href='/lens_data_input/payment/'>レンズデータを変更する</a>
+	</div>
+{% endif %}
+<div>
+	{% if payment %}
+		{{payment}}<a href='/payment_select/{{flag}}'>お支払い方法を選択する</a>
+	{% else %}
+		<a href='/payment_select/{{flag}}'>お支払い方法を選択する</a>
+	{% endif %}
+</div>
+<div>
+	<a href='/order/'>注文を確定する</a>
+</div>
+<div>
+	<a href='/'>商品リストに戻る</a>
+	<a href='/empty_cart/'>カートを空にする</a>
+</div>
+<hr>
+<table>
+{% for c in cart %}
+<tr><th>cart.product_id</th><td>{{c.product_id}}</td></tr>
+<tr><th>cart.lens_data.select_lens</th><td>{{c.lens_data.select_lens}}</td></tr>
+<tr><th>cart.lens_data.no_lens</th><td>{{c.lens_data.no_lens}}</td></tr>
+<tr><th>cart.lens_data.leveled_lens</th><td>{{c.lens_data.leveled_lens}}</td></tr>
+<tr><th>cart.lens_data.get_lens_data</th><td>{{c.lens_data.get_lens_data}}</td></tr>
+{% endfor %}
+<tr><th>lens_level.level_r</th><td>{{lens_level.level_r}}</td></tr>
+<tr><th>lens_level.astig_r</th><td>{{lens_level.astig_r}}</td></tr>
+<tr><th>address.name</th><td>{{address.name}}</td></tr>
+<tr><th>address.address</th><td>{{address.address}}</td></tr>
+<tr><th>payment</th><td>{{payment}}</td></tr>
+<tr><th>user</th><td>{{user.id}}</td></tr>
+</table>
+{% endblock %}

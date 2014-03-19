@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if products %}
+<h2>カートには{{products.count}}点の商品が入っています</h2>
+{% else %}
+<h2>カートには何も入っていません</h2>
+{% endif %}
+<ul>
+{% for k,p in products.items %}
+	<li><img src='{{STATIC_URL}}images/brands/{{p.brand.code}}/{{p.img}}' width='150' height='100'></a></li>
+	<li>{{p.brand.code}}-{{p.color.code}}-{{p.id}}</li>
+	<li><a href='/del_item/{{forloop.counter0}}/'>カートから削除する</a></li>
+	{% if not p.checked %}
+		<li><a href='/select_lens/{{forloop.counter0}}/select/cart/'>レンズを選択する</a></li>
+	{% else %}
+		<li>
+		{% if p.cart.lens_data.select_lens ==  'leveled' %}
+			度つき:{{p.cart.lens_data.leveled_lens}}
+		{% else %}
+			度なし:{{p.cart.lens_data.no_lens}}	
+		{% endif %}
+		<a href='/select_lens/{{forloop.counter0}}/checked/cart/'>レンズを変更する</a></li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% if lens_data_input and lens_level == None %}
+	<div>
+		<a href='/lens_data_input/cart/'>レンズデータを登録する</a>
+	</div>
+{% elif lens_data_input %}
+	<div>
+		<ul>
+			<li>level_l:{{lens_level.level_l}}</li>
+			<li>level_r:{{lens_level.level_r}}</li>
+			<li>astig_l:{{lens_level.astig_l}}</li>
+			<li>astig_r:{{lens_level.astig_r}}</li>
+		</ul>
+		<a href='/lens_data_input/cart/'>レンズデータを変更する</a>
+	</div>
+{% endif %}
+<div>
+	<a href='/'>商品リストに戻る</a>
+	<a href='/empty_cart/'>カートを空にする</a>
+	<a href='/login_select/'>購入手続きをおこなう</a>
+</div>
+<hr>
+{% for c in cart %}
+	cart.product_id:{{c.product_id}}
+	-cart.lens_data.select_lens:{{c.lens_data.select_lens}}
+	-cart.lens_data.no_lens:{{c.lens_data.no_lens}}
+	-cart.lens_data.leveled_lens:{{c.lens_data.leveled_lens}}
+	-cart.lens_data.get_lens_data:{{c.lens_data.get_lens_data}}
+{% endfor %}
+	- lens_data.input_data.level_r{{ personals.input_data.level_r }}
+	- lens_data.input_data.astig_r{{ personals.input_data.astig_r }}
+	- lens_data.input:{{lens_data_input}}
+{% endblock %}

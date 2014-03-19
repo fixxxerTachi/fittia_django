@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>めがねのfittia | ご家族の目のを考えたサービス</title>
+<meta name="keywords" content="fittia,フイッティア,フィッティング,石川,能登,羽咋,七尾,メガネ,眼鏡,近視,こども,学生,家族,視力,フレーム,レンズ,修理,割引,交換,キャンペーン,マックスバリュー,ベイモール"/>
+<meta name="description" content="お子様、ご家族でメガネが必要になりましたら、七尾、羽咋めがねのフィッティアまでお越しください。メガネのフィッティング技術に長けたスタッフが、お客様ひとりひとりにピッタリなメガネを提案いたします" />
+<link rel='stylesheet' href='{{ STATIC_URL }}css/common.css' type='text/css'>
+<link rel='stylesheet' href='{{ STATIC_URL }}css/{% block css %}{% endblock %}.css' type='text/css'>
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type='text/javascript' src='{{ STATIC_URL }}/js/imagesLoaded.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}/js/common.js'></script>
+</head>
+<body>
+<div id="container">
+
+<div id='header'>
+	<h1>めがねのフィッティア　あなたの個性にあわせたメガネを提案する能登のメガネ屋です</h1>
+    <div id="logo"><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/index.html">
+		<img src='{{ STATIC_URL }}/images/logo4.gif' width='180' height='80' alt='フィッティア' /></a></div>
+    <div id='header_shop'>
+    	<ul>
+			<li><a href='/users/add/'>会員登録</a></li>
+			<li><a href='/users/login/'>ログイン</a></li>
+        </ul>
+    </div>
+	<div id="navi">
+    	<ul>
+            <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/index.html"><img src="{{ STATIC_URL }}images/menubar/concept_off.gif" width="140" height="60" alt="フィッティアのこだわり" /></a></li>
+	    	<li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/family.html"><img src="{{ STATIC_URL }}images/menubar/family_off.gif" width="140" height="60" alt="家族の目のために" /></a></li>
+            <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/catalogue.html"><img src="{{ STATIC_URL }}images/menubar/catalogue_off.gif" width="140" height="60" alt="商品リスト" /></a></li>
+            <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/shop.html"><img src="{{ STATIC_URL }}images/menubar/shop_off.gif" width="140" height="60" alt="店舗案内" /></a></li>
+            <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/contact.html"><img src="{{ STATIC_URL }}images/menubar/contact_off.gif" width="140" height="60" alt="お問いあわせ" /></a></li>
+        </ul>
+    </div><!-- end: navi-->
+</div><!-- end : header -->
+<div id="mainvisual">
+	<div class='slideshow'>
+		<a href='/products/brand/CRF/'><img src='{{STATIC_URL}}/img/products/brand/carufure_main_off.gif' width='450' height='265' /></a> <a href='/products/brand/SKM/'><img src='{{STATIC_URL}}/img/products/brand/sikumi_main_off.gif' width='450' height='265' /></a>
+	</div>
+	<div class='slideshow'>
+		<a href='/products/brand/ubu/'><img src='{{STATIC_URL}}/img/products/brand/ubu_main_off.gif' width='450' height='265' /></a>
+		<a href='/products/brand/WEL/'><img src='{{STATIC_URL}}/img/products/brand/wellington_main_off.gif' width='450' height='265' /></a>
+	</div> 
+</div>
+<div id="main">
+	{% block content %}{% endblock %}
+</div><!-- end: main -->
+<div id="side">
+	<ul>
+		<li><div id='cart_box'><a href='/products/show_cart'>Cart</a></div></li>
+    	<li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/campaign.html#student"><img src="{{ STATIC_URL }}images/campaign/campaign_student_off.gif" width="200" height="144" alt="学生割" /></a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/campaign.html#family"><img src="{{ STATIC_URL }}images/campaign/campaign_family_off.gif" width="200" height="144" alt="家族割" /></a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/campaign.html#support"><img src="{{ STATIC_URL }}images/campaign/campaign_support_off.gif" width="200" height="144" alt="2年サポート" /></a></li>
+        <li>
+			<a href='/products/'><img src='{{ STATIC_URL }}images/campaign/campaign_store_off.gif' width='200' height='144' alt='オンラインストア'>
+        </li>
+    </ul>
+<div id='cart_side'>
+<!--
+<?php
+	if($this->Session->read('cart')){
+		$items=$this->Session->read('cart');
+		$quantity=count($items);
+		$total=$this->Session->read('total');
+	}else{
+		$quantity=0;
+		$total=0;
+	}
+?>
+<p><?php echo $this->Html->image('wellington_ico.gif',array('width'=>'60','height'=>'23'));?> ×　<?php echo $quantity;?></p>
+<p>合計金額 : <?php echo number_format($total);?>円</p>
+-->
+</div>
+</div><!-- end: side -->
+<div id="footer">
+	<ul>
+    	<li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/index.html">fittiaのこだわり</a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/family.html">家族の目のために</a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/catalogue.html">商品リスト</a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/shop.html">店舗情報</a></li>
+        <li><a href="http://sandbox.winschool.jp/~tochigi/utsunomiya_k/kknhc045/contact.html">お問い合わせ</a></li>
+    </ul>
+
+	<p>Copyright (C)2012 fittia megane All Rights Reserved.</p>
+</div><!-- end: footer -->
+</div><!-- end: conntainer-->
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div>
+	<h2>ログイン</h2>
+	<form method='post' action='/login_form/'>
+	{% csrf_token %}
+	<table>
+	{{form}}
+	<tr><td></td><td><input type='submit' value='login'></td></tr>
+	</table>
+	</form>
+</div>
+<div>
+	<h3>新規ご登録の方はこちら</h3>
+	<p><a href='/input_user/'>新規メンバー登録</a></p>
+</div>
+<div>
+	<h3>会員登録せずに買い物を続ける場合はこちら</h3>
+	<p><a href='/no_user/'>お客様情報、配送先を入力する</a></p>
+</div>
+{% endblock %}

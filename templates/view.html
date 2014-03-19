@@ -1,0 +1,32 @@
+{% extends 'layout.html'%}
+{% block css %}description{% endblock %}
+{% block content %}
+<div id='contents'>
+	<h2>商品詳細</h2>
+	<div class='list_img'>
+		<img src='{{STATIC_URL}}images/brands/{{product.brand.code}}/{{product.img}}' width='300' height='200'>
+		<table cellpadding='0' cellspacing='0'>
+		<tr>
+			<th>商品コード</th>
+			<td>{{product.brand.code}}-{{product.color.code}}-{{product.id}}</td>
+		</tr>
+		<tr>
+			<th>価格</th>
+			<td>{{product.price}}円</td>
+		</tr>
+		<tr>
+			<th>target</th>
+			<td>{{product.brand.target}}/{{product.brand.sex}}
+		</tr>
+		</table>
+		<ul>
+			<li><img src='{{STATIC_URL}}images/products/brand/{{product.brand.img}}' width='300' height='200'><li>
+			<li>{{product.brand.descripiton}}</li>
+		</ul>
+	</div>
+	<div>
+		<a href='/'>商品リストに戻る</a>
+		<a href='/insert_cart/{{product.id}}'>カートに入れる</a>
+	</div>
+</div>
+{% endblock %}
